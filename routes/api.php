@@ -45,6 +45,16 @@ Route::group(["prefix" => "natureza-texto-juridico"], function () {
     Route::put("/atualizar", "NaturezaTextoJuridicoController@atualizar");    
 });
 
+//tipoAto
+Route::group(["prefix" => "tipo-ato"], function () {    
+    Route::get("/{id}", "TipoAtoController@get");    
+    Route::get("/", "TipoAtoController@getAll");    
+    Route::post("/salvar", "TipoAtoController@salvar");    
+    Route::delete("/{id}/excluir", "TipoAtoController@excluir");    
+    Route::put("/atualizar", "TipoAtoController@atualizar");    
+});
+
+
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {
     Route::get("/{id}", "CidadeController@getCidade");
     Route::get("/{estado_id}/estado", "CidadeController@getCidadePorEstado");

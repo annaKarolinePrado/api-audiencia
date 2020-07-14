@@ -35,6 +35,16 @@ Route::group(["prefix" => "tipo-responsavel"], function () {
     Route::delete("/{id}/excluir", "TipoResponsavelController@excluir");    
     Route::put("/atualizar", "TipoResponsavelController@atualizar");    
 });
+
+//naturezaTextoJuridico
+Route::group(["prefix" => "natureza-texto-juridico"], function () {    
+    Route::get("/{id}", "NaturezaTextoJuridicoController@getNaturezaJuridica");    
+    Route::get("/", "NaturezaTextoJuridicoController@getNaturezasJuridicas");    
+    Route::post("/salvar", "NaturezaTextoJuridicoController@salvar");    
+    Route::delete("/{id}/excluir", "NaturezaTextoJuridicoController@excluir");    
+    Route::put("/atualizar", "NaturezaTextoJuridicoController@atualizar");    
+});
+
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {
     Route::get("/{id}", "CidadeController@getCidade");
     Route::get("/{estado_id}/estado", "CidadeController@getCidadePorEstado");

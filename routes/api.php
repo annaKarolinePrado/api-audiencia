@@ -62,6 +62,15 @@ Route::group(["prefix" => "fonte-divulgacao"], function () {
     Route::put("/atualizar", "FonteDivulgacaoController@atualizar");    
 });
 
+//ato
+Route::group(["prefix" => "ato"], function () {    
+    Route::get("/{id}", "AtoController@get");    
+    Route::get("/", "AtoController@getAll");    
+    Route::post("/salvar", "AtoController@salvar");    
+    Route::delete("/{id}/excluir", "AtoController@excluir");    
+    Route::put("/atualizar", "AtoController@atualizar");    
+});
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {
     Route::get("/{id}", "CidadeController@getCidade");

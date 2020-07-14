@@ -27,9 +27,13 @@ Route::post('login', 'UserController@autenticar');
 Route::get('open', 'DataController@open');
 
 
-//localização
-Route::group(["prefix" => "pais","namespace" => "localizacao"], function () {    
-    Route::get("/{id}", "PaisController@getPais");    
+//tipoResponsavel
+Route::group(["prefix" => "tipo-responsavel"], function () {    
+    Route::get("/{id}", "TipoResponsavelController@getTipoResponsavel");    
+    Route::get("/", "TipoResponsavelController@getTiposResponsaveis");    
+    Route::post("/salvar", "TipoResponsavelController@salvar");    
+    Route::delete("/{id}/excluir", "TipoResponsavelController@excluir");    
+    Route::put("/atualizar", "TipoResponsavelController@atualizar");    
 });
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {
     Route::get("/{id}", "CidadeController@getCidade");

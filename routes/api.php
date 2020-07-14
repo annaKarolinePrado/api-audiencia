@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('documentacao', 'DocumentacaoController@testar');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -54,14 +53,22 @@ Route::group(["prefix" => "tipo-ato"], function () {
     Route::put("/atualizar", "TipoAtoController@atualizar");    
 });
 
+//fonteDivulgacao
+Route::group(["prefix" => "fonte-divulgacao"], function () {    
+    Route::get("/{id}", "FonteDivulgacaoController@get");    
+    Route::get("/", "FonteDivulgacaoController@getAll");    
+    Route::post("/salvar", "FonteDivulgacaoController@salvar");    
+    Route::delete("/{id}/excluir", "FonteDivulgacaoController@excluir");    
+    Route::put("/atualizar", "FonteDivulgacaoController@atualizar");    
+});
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {
     Route::get("/{id}", "CidadeController@getCidade");
     Route::get("/{estado_id}/estado", "CidadeController@getCidadePorEstado");
 });
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::put('enum', 'InteresseController@testarEnum');
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::get('closed', 'DataController@closed');
     //usuário
@@ -90,18 +97,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
         Route::delete("/{id}/excluir", "EnderecoController@excluir");
         Route::post("/salvar", "EnderecoController@salvar");
         Route::put("/atualizar", "EnderecoController@atualizar");
-    });
-
-    Route::group(["prefix" => "empresa"], function () {
-        Route::delete("/{id}/excluir", "EmpresaController@excluir");
-        Route::post("/salvar", "EmpresaController@salvar");
-        Route::post("/logo", "EmpresaController@salvarLogo");
-        Route::put("/atualizar", "EmpresaController@atualizar");
-        Route::get("/", "EmpresaController@getEmpresaUsuarioLogado");
-    });
-    Route::group(["prefix" => "funcionario"], function () {
-        Route::delete("/{id}/excluir", "FuncionarioController@excluir");
-        Route::post("/salvar", "FuncionarioController@salvar");
     });
 });
 

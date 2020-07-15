@@ -80,6 +80,15 @@ Route::group(["prefix" => "audiencia"], function () {
     Route::delete("/{id}/excluir", "AudienciaController@excluir");    
     Route::put("/atualizar", "AudienciaController@atualizar");    
 });
+
+//audiencia
+Route::group(["prefix" => "responsavel"], function () {    
+    Route::get("/{id}", "ResponsavelController@get");    
+    Route::get("/", "ResponsavelController@getAll");       
+    Route::post("/salvar", "ResponsavelController@salvar");    
+    Route::delete("/{id}/excluir", "ResponsavelController@excluir");    
+    Route::put("/atualizar", "ResponsavelController@atualizar");    
+});
     
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {

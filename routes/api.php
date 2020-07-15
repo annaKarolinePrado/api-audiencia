@@ -65,12 +65,22 @@ Route::group(["prefix" => "fonte-divulgacao"], function () {
 //ato
 Route::group(["prefix" => "ato"], function () {    
     Route::get("/{id}", "AtoController@get");    
-    Route::get("/", "AtoController@getAll");    
+    Route::get("/", "AtoController@getAll"); 
     Route::post("/salvar", "AtoController@salvar");    
     Route::delete("/{id}/excluir", "AtoController@excluir");    
     Route::put("/atualizar", "AtoController@atualizar");    
 });
+Route::get("/ato-dto", "AtoController@getFK");  
 
+//audiencia
+Route::group(["prefix" => "audiencia"], function () {    
+    Route::get("/{id}", "AudienciaController@get");    
+    Route::get("/", "AudienciaController@getAll");       
+    Route::post("/salvar", "AudienciaController@salvar");    
+    Route::delete("/{id}/excluir", "AudienciaController@excluir");    
+    Route::put("/atualizar", "AudienciaController@atualizar");    
+});
+    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::group(["prefix" => "cidade","namespace" => "localizacao"], function () {
     Route::get("/{id}", "CidadeController@getCidade");

@@ -1,28 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Ato;
+use App\Audiencia;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Ato;
 use App\TipoAto;
 
-class AtoController extends Controller
+class AudienciaController extends Controller
 {
     private $objeto;
 
     public function __construct()  {
-        $this->objeto = new Ato();
+        $this->objeto = new Audiencia();
     }
 
     public function salvar(Request $request){
-        $objeto = Ato::create($request->all());
+        $objeto = Audiencia::create($request->all());
         return response()->json($objeto,200);
     }
 
     public function atualizar(Request $request){
         if (!$request->id){
-            return response()->json(['mensagem' =>'Não informado o ato para atualizar'],500);
+            return response()->json(['mensagem' =>'Não informado a audiencia para atualizar'],500);
         } 
         $objeto = $this->objeto->find($request->id);
         $objeto->update($request->all());
@@ -46,29 +47,8 @@ class AtoController extends Controller
     }
 
     public function getAll()  {
-        return response()->json(Ato::all(),200);
-    }
-    
-    public function getFK()  {
-        $atos = Ato::all();
-        $cont = 0;
-        foreach ($atos as $ato) {
-            $cont = $cont +1 ;
-            $tipo = $this->getTipoAto($ato->tipo);
-            $ret = [
-                "ato"=> $ato,
-                "tipo"=> $tipo
-            ];
-            if($cont == 1){
-                $array=$ret;
-            }
-            array_push($array,$ret);
-        }
-        return response()->json($array,200);
+        return response()->json(Audiencia::all(),200);
     }
 
-    public function getTipoAto($id)  {
-        $tipoAto = new TipoAto();
-        return $tipoAto->find($id);
-    }
+   
 }
